@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        @font-face{
+        font-family:'digital-clock-font';
+        src: url('./digital-7.ttf');
+        }
+        
+        
+        body{
+            background: rgb(0,7,88);
+            background: linear-gradient(180deg, rgba(0,4,52,1) 0%, rgba(4,0,38,1) 100%);
+            color: white;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+
+        }
+
+        .time-cont{
+            
+            width: 100%;
+            
+            font-family: 'digital-clock-font';
+            color: white;
+            padding: 2rem;
+            text-align: center;
+/*            box-shadow: 0px 0px 20px red , 0px 0px 50px red;*/
+        }
+        span{
+            text-shadow: 0px 0px 15px blue , 0px 0px 25px blue;
+            text-align: center;
+            font-size: 10em;
+        }
+        #date{
+            font-size: 2rem;
+        }
+        
+        
+        @media screen(max-width: 900px){
+            body{
+                background: white;
+            }
+        }
+    </style>
+</head>
+<body>
+
+        <div>
+            <div class="time-cont">
+                <small id="date"> </small>
+                
+                <br/>
+                <span id="h"></span><span>:</span>
+                <span id="m"></span><span>:</span>
+                <span id="s"></span>
+                <strong id="prefix"></strong>
+                
+            </div>
+        </div>
+        
+    
+
+
+    <script>
+        function time(){
+            const myDate = new Date();
+        
+            let h =  document.getElementById('h');
+            let m =  document.getElementById('m');
+            let s =  document.getElementById('s');
+            let prefix =  document.getElementById('prefix');
+            let dates = document.getElementById('date');
+            
+            let hours,minutes,second , prefx,dayDate;
+            
+            hours = myDate.getHours();
+            minutes = myDate.getMinutes();
+            second = myDate.getSeconds();
+            day = myDate.getDay();
+            dayDate = myDate.getDate() 
+            month = myDate.getMonth();
+            
+            switch(day){
+                case 0:
+                    day= "Sunday";
+                    break;
+                case 1:
+                    day= "Mon";
+                    break;
+                case 2:
+                    day= "Tue";
+                    break;
+                case 3:
+                    day= "Wed";
+                    break;
+                case 4:
+                    day= "Thu";
+                    break;
+                case 5:
+                    day= "Fri";
+                    break;
+                case 6:
+                    day= "Sun";
+                    break;
+            }
+            switch(month){
+                case 0:
+                    month = 'Jan';
+                    break;
+                case 1:
+                    month = 'Feb';
+                    break;
+                case 2:
+                    month = 'Mar';
+                    break;
+                case 3:
+                    month = "Apr";
+                    break;
+                case 4:
+                    month = 'May';
+                    break;
+                case 5:
+                    month = 'Jun';
+                    break;
+                case 6:
+                    month = 'Jul';
+                    break;
+                case 7:
+                    month = 'Aug';
+                    break;
+                case 8:
+                    month = 'Sep';
+                    break;
+                case 9:
+                    month = 'Oct';
+                    break;
+                case 10:
+                    month = 'Nov';
+                    break;
+                case 10:
+                    month = 'Dec';
+                    break;
+            }
+            
+            prefx = 'am';
+
+            hours == 0 ? hours = 12 : hours ;
+            if(hours > 12 ){
+                hours = hours - 12;
+                prefx = 'pm';
+            }else{
+                hours ;
+            } 
+            
+            hours < 10  ? hours = "0" + hours : hours ;
+            minutes < 10  ? minutes = "0" + minutes : minutes;
+            second < 10  ? second = "0" + second : second ;
+            
+            
+            setTimeout(time,1000);
+
+            h.innerHTML = hours;
+            m.innerHTML = minutes;
+            s.innerHTML = second;
+            dates.innerHTML = day + ", " + dayDate + " " + month;
+            prefix.innerHTML = prefx;
+            
+            console.log(date)
+            
+             
+        }
+        
+        time();
+        
+        
+        
+
+
+    </script>
+</body>
+</html>
